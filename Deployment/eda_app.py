@@ -82,5 +82,5 @@ def run_eda_app() -> None:
 			for col, (filename, title, caption) in zip(cols, row):
 				with col:
 					image = Image.open(IMG_DIR / filename)
-					st.image(image, caption=title, use_column_width=True)
+					st.image(image, caption=title, use_container_width=True)
 					st.markdown(f"<span class='stat-note'>{caption}</span>", unsafe_allow_html=True)

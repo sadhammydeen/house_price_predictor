@@ -226,6 +226,7 @@ h1, h2, h3, h4, h5, h6 {
 
 [data-testid="stMetricValue"] {
 	font-weight: 700;
+	color: var(--ink) !important;
 }
 
 [data-testid="metric-container"] {
@@ -236,6 +237,19 @@ h1, h2, h3, h4, h5, h6 {
 	box-shadow: 6px 6px 0 rgba(17, 17, 17, 0.85);
 	text-align: left;
 	align-items: flex-start;
+}
+
+[data-testid="metric-container"] * {
+	color: var(--ink) !important;
+}
+
+[data-testid="stMetricLabel"],
+[data-testid="stMetricDelta"] {
+	color: var(--ink) !important;
+}
+
+[data-testid="stMetricDelta"] svg {
+	fill: var(--ink) !important;
 }
 
 label,
@@ -401,7 +415,7 @@ def render_home(df: pd.DataFrame) -> None:
 		)
 	with hero_cols[1]:
 		hero_image = Image.open(IMG_DIR / "Realty_Growth.jpg")
-		st.image(hero_image, caption="Mumbai skyline momentum", use_column_width=True)
+		st.image(hero_image, caption="Mumbai skyline momentum", use_container_width=True)
 
 	metric_cols = st.columns(3, gap="large")
 	metric_cols[0].metric("Listings analyzed", f"{df.shape[0]:,}")
@@ -461,27 +475,6 @@ def render_about() -> None:
 			html_data = html_file.read()
 		st.components.v1.html(html_data, height=520, scrolling=True)
 		st.markdown("</div>", unsafe_allow_html=True)
-
-	st.markdown(
-		"""
-		<div class="neobrutalist-card social-card">
-			<h3>Connect with Sadham Mydeen</h3>
-			<p>Collaborations, deployment support, or dataset conversations—reach out via any channel below.</p>
-			<div class="social-grid">
-				<a href="{linkedin}" target="_blank">LinkedIn</a>
-				<a href="{github}" target="_blank">GitHub</a>
-				<a href="{email}" target="_blank">Email</a>
-				<a href="{whatsapp}" target="_blank">WhatsApp</a>
-			</div>
-		</div>
-		""".format(
-			linkedin=SOCIAL_LINKS["LinkedIn"],
-			github=SOCIAL_LINKS["GitHub"],
-			email=SOCIAL_LINKS["Email"],
-			whatsapp=SOCIAL_LINKS["WhatsApp"],
-		),
-		unsafe_allow_html=True,
-	)
 
 
 def main() -> None:
